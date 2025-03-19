@@ -345,3 +345,22 @@ body.dark footer {
     background: #222;
     color: #ddd;
 }
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .header-buttons .btn-text {
+    display: none;
+  }
+  
+  /* Optionally, adjust the header layout */
+  header h1 {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+  
+  .header-buttons {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
