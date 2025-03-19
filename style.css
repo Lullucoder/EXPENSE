@@ -1,7 +1,10 @@
+/* Import a Google Font for a modern look */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 /* Base Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
     margin: 0;
     padding: 0;
     color: #333;
@@ -14,26 +17,72 @@ body.dark {
     color: #ddd;
 }
 
-/* Header */
+/* Header Enhancements */
 header {
     background: linear-gradient(45deg, #478cff, #fc6a4d);
     color: #fff;
     text-align: center;
-    padding: 1.5rem 0;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    padding: 1.8rem 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 header h1 {
     font-size: 2.75rem;
     margin: 0;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
+
+/* Header Buttons (Desktop and Mobile) */
 .header-buttons {
     position: absolute;
     top: 1rem;
     right: 1rem;
 }
+.header-buttons button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+.header-buttons button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.3);
+}
+.header-buttons i {
+    margin-right: 0.5rem;
+}
 
-/* Main Layout */
+/* Responsive: Mobile Adjustments for Header Button */
+@media (max-width: 600px) {
+  .header-buttons .btn-text {
+    display: none;
+  }
+  .header-buttons button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    justify-content: center;
+  }
+  .header-buttons i {
+    font-size: 1.2rem;
+  }
+  header h1 {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+  .header-buttons {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+/* Main Layout Enhancements */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -48,14 +97,11 @@ header h1 {
     background: #fff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-    transition: background 0.5s ease;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    transition: background 0.5s ease, transform 0.3s ease;
 }
-body.dark .form-pane,
-body.dark .data-pane {
-    background: #333;
-    color: #ddd;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+.form-pane:hover, .data-pane:hover {
+    transform: translateY(-4px);
 }
 
 /* Headings */
@@ -135,6 +181,9 @@ body.dark .data-pane {
 }
 .btn.secondary:hover {
     background: #888;
+    transform: scale(1.03);
+}
+.btn:hover {
     transform: scale(1.03);
 }
 
@@ -257,7 +306,7 @@ footer {
     cursor: pointer;
 }
 
-/* Toast Notifications */
+/* Toast Notifications with a subtle animation */
 .toast {
     position: fixed;
     bottom: 2rem;
@@ -269,13 +318,14 @@ footer {
     border-radius: 4px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 .toast.show {
     opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
-/* Dark Theme Overrides */
+/* Dark Theme Overrides (Modernized) */
 body.dark header {
     background: linear-gradient(45deg, #222, #444);
     color: #ddd;
