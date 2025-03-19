@@ -1,0 +1,347 @@
+/* Base Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Dark Theme */
+body.dark {
+    background: #222;
+    color: #ddd;
+}
+
+/* Header */
+header {
+    background: linear-gradient(45deg, #478cff, #fc6a4d);
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 0;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+header h1 {
+    font-size: 2.75rem;
+    margin: 0;
+}
+.header-buttons {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.form-pane, .data-pane {
+    flex: 1;
+    min-width: 320px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    transition: background 0.5s ease;
+}
+body.dark .form-pane,
+body.dark .data-pane {
+    background: #333;
+    color: #ddd;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Headings */
+.add-expense h2,
+.expense-list h2,
+.expense-summary h2,
+.expense-history h2 {
+    border-bottom: 2px solid #478cff;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Form Controls */
+.form-control {
+    margin-bottom: 1rem;
+}
+.form-control label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+}
+.form-control input,
+.form-control select {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button Groups & Buttons */
+.button-group,
+.history-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.btn i {
+    margin-right: 0.5rem;
+}
+.btn.primary {
+    background: #478cff;
+    color: #fff;
+}
+.btn.primary:hover {
+    background: #357ae8;
+    transform: scale(1.03);
+}
+.btn.danger {
+    background: #fc6a4d;
+    color: #fff;
+}
+.btn.danger:hover {
+    background: #e5573d;
+    transform: scale(1.03);
+}
+.btn.success {
+    background: #27ae60;
+    color: #fff;
+}
+.btn.success:hover {
+    background: #1e8449;
+    transform: scale(1.03);
+}
+.btn.secondary {
+    background: #999;
+    color: #fff;
+}
+.btn.secondary:hover {
+    background: #888;
+    transform: scale(1.03);
+}
+
+/* Expense List */
+.expense-list ul,
+.expense-summary ul,
+.expense-history ul {
+    list-style: none;
+    padding: 0;
+}
+.expense-list li {
+    background: #f1f6fa;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+.expense-list .datetime {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Action Buttons */
+.action-btns {
+    display: flex;
+    gap: 0.5rem;
+}
+.action-btns button {
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* Summary Section */
+.expense-summary {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.expense-summary li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.summary-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+/* Expense History Section */
+.expense-history {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.control-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background: #478cff;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    animation: modalFade 0.5s;
+}
+@keyframes modalFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    animation: slideDown 0.5s;
+}
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.75rem;
+    cursor: pointer;
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #27ae60;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+.toast.show {
+    opacity: 1;
+}
+
+/* Dark Theme Overrides */
+body.dark header {
+    background: linear-gradient(45deg, #222, #444);
+    color: #ddd;
+}
+
+body.dark .container {
+    color: #ddd;
+}
+
+body.dark .form-control label {
+    color: #ddd;
+}
+
+body.dark .form-control input,
+body.dark .form-control select,
+body.dark .control-group input,
+body.dark .control-group select {
+    background: #444;
+    color: #ddd;
+    border: 1px solid #666;
+}
+
+body.dark .btn {
+    color: #fff;
+}
+
+body.dark .btn.primary {
+    background: #478cff;
+}
+
+body.dark .btn.primary:hover {
+    background: #357ae8;
+}
+
+body.dark .btn.danger {
+    background: #fc6a4d;
+}
+
+body.dark .btn.danger:hover {
+    background: #e5573d;
+}
+
+body.dark .btn.secondary {
+    background: #777;
+}
+
+body.dark .btn.secondary:hover {
+    background: #666;
+}
+
+body.dark .btn.success {
+    background: #27ae60;
+}
+
+body.dark .btn.success:hover {
+    background: #1e8449;
+}
+
+body.dark .expense-list li,
+body.dark .expense-summary,
+body.dark .expense-history {
+    background: #2b2b2b;
+    border-color: #444;
+}
+
+body.dark footer {
+    background: #222;
+    color: #ddd;
+}

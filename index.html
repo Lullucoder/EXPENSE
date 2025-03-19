@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expense Tracker</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-money-bill-wave"></i> Expense Tracker</h1>
+    <div class="header-buttons">
+      <button id="theme-toggle" class="btn secondary"><i class="fas fa-adjust"></i> Toggle Theme</button>
+    </div>
+  </header>
+  
+  <main class="container">
+    <div class="form-pane">
+      <!-- Expense Form -->
+      <section class="add-expense">
+        <h2>Add New Expense</h2>
+        <form id="expense-form">
+          <div class="form-control">
+            <label for="description">Description</label>
+            <input type="text" id="description" placeholder="Enter description" required />
+          </div>
+          <div class="form-control">
+            <label for="amount">Amount (₹)</label>
+            <input type="number" id="amount" placeholder="Enter amount" required />
+          </div>
+          <div class="form-control">
+            <label for="category">Category</label>
+            <select id="category" required>
+              <option value="">Select Category</option>
+              <option value="Food">Food</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <!-- New: Expense Date -->
+          <div class="form-control">
+            <label for="expense-date">Expense Date</label>
+            <input type="date" id="expense-date" value="<?= date('Y-m-d'); ?>" required />
+          </div>
+          <!-- New: Sharing Fields -->
+          <div class="form-control">
+            <label for="shared-with">Shared With (Name)</label>
+            <input type="text" id="shared-with" placeholder="Optional: Enter name" />
+          </div>
+          <div class="form-control">
+            <label for="shared-amount">Shared Amount (₹)</label>
+            <input type="number" id="shared-amount" placeholder="Optional: Enter shared amount" step="0.01" />
+          </div>
+          <div class="button-group">
+            <button type="submit" class="btn primary"><i class="fas fa-plus-circle"></i> Add Expense</button>
+            <button type="button" id="clear-all" class="btn danger"><i class="fas fa-eraser"></i> Clear All</button>
+          </div>
+        </form>
+      </section>
+    </div>
+    
+    <div class="data-pane">
+      <!-- Live Expense List -->
+      <section class="expense-list">
+        <h2>Expenses</h2>
+        <ul id="expenses"></ul>
+        <div class="total">
+          <h3>Total: ₹<span id="total-amount">0.00</span></h3>
+        </div>
+      </section>
+      
+      <!-- Summary Section -->
+      <section class="expense-summary">
+        <h2>Summary by Category</h2>
+        <ul id="summary"></ul>
+        <div class="summary-actions">
+          <button id="share-summary" class="btn success"><i class="fab fa-whatsapp"></i> Share Whole List</button>
+          <button id="download-csv" class="btn secondary"><i class="fas fa-download"></i> Download CSV</button>
+        </div>
+      </section>
+      
+      <!-- Expense History with Search -->
+      <section class="expense-history">
+        <h2>Expense History</h2>
+        <div class="history-controls">
+          <div class="control-group">
+            <label for="month-select">Select Month:</label>
+            <select id="month-select">
+              <option value="">All</option>
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="category-filter">Select Category:</label>
+            <select id="category-filter">
+              <option value="">All</option>
+              <option value="Food">Food</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="keyword">Keyword:</label>
+            <input type="text" id="keyword" placeholder="Search description" />
+          </div>
+          <button id="show-history" class="btn"><i class="fas fa-search"></i> Show History</button>
+        </div>
+        <ul id="history-list"></ul>
+      </section>
+    </div>
+  </main>
+  
+  <!-- Edit Expense Modal -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal" class="close">&times;</span>
+      <h2>Edit Expense</h2>
+      <form id="edit-form">
+        <div class="form-control">
+          <label for="edit-description">Description</label>
+          <input type="text" id="edit-description" required />
+        </div>
+        <div class="form-control">
+          <label for="edit-amount">Amount (₹)</label>
+          <input type="number" id="edit-amount" required />
+        </div>
+        <div class="form-control">
+          <label for="edit-category">Category</label>
+          <select id="edit-category" required>
+            <option value="">Select Category</option>
+            <option value="Food">Food</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <!-- New: Edit fields for sharing and date -->
+        <div class="form-control">
+          <label for="edit-expense-date">Expense Date</label>
+          <input type="date" id="edit-expense-date" required />
+        </div>
+        <div class="form-control">
+          <label for="edit-shared-with">Shared With (Name)</label>
+          <input type="text" id="edit-shared-with" placeholder="Optional" />
+        </div>
+        <div class="form-control">
+          <label for="edit-shared-amount">Shared Amount (₹)</label>
+          <input type="number" id="edit-shared-amount" placeholder="Optional" step="0.01" />
+        </div>
+        <button type="submit" class="btn primary"><i class="fas fa-save"></i> Save Changes</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+  
+  <footer>
+    <p>&copy; 2025 Expense Tracker. Crafted with ♥ by Prashant.</p>
+  </footer>
+  
+  <!-- Link to external JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
