@@ -348,16 +348,34 @@ body.dark footer {
 
 /* Responsive Styles */
 @media (max-width: 600px) {
+  /* Hide the toggle text */
   .header-buttons .btn-text {
     display: none;
   }
   
-  /* Optionally, adjust the header layout */
+  /* Resize and style the theme toggle button */
+  .header-buttons button {
+    width: 40px;       /* Fixed dimension for circle */
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Reduce icon size */
+  .header-buttons i {
+    font-size: 1.2rem;
+  }
+  
+  /* Optional: Adjust header heading */
   header h1 {
     font-size: 1.75rem;
     text-align: center;
   }
   
+  /* Adjust header button position if needed */
   .header-buttons {
     position: absolute;
     top: 0.5rem;
