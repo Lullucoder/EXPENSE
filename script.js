@@ -75,7 +75,25 @@ document.getElementById('expense-form').addEventListener('submit', function(e) {
     }
 });
 
+// When the category select changes, show/hide the custom category input
+document.getElementById('category').addEventListener('change', function() {
+    const customCategoryControl = document.querySelector('.custom-category');
+    if (this.value === "Other") {
+        customCategoryControl.style.display = 'block';
+    } else {
+        customCategoryControl.style.display = 'none';
+    }
+});
+
+// Modify addExpense to use custom category if "Other" is selected
 function addExpense(description, amount, category, expenseDateInput, sharedWith, sharedAmount) {
+    // If user selected "Other", check the custom input field
+    if(category === "Other") {
+        const customCategory = document.getElementById('custom-category').value.trim();
+        if(customCategory !== "") {
+            category = customCategory;
+        }
+    }
     const expenseDate = new Date(expenseDateInput);
     const formattedDate = expenseDate.toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
     const timestamp = expenseDate.getTime();
