@@ -118,10 +118,9 @@ function addExpense(description, amount, category, expenseDateInput, sharedWith,
     expenseRecords.push({ id: expenseId, description, amount, category, formattedDate, timestamp, sharedWith, sharedAmount });
     expenseId++;
     totalAmount += amount;
-    document.getElementById('total-amount').innerText = totalAmount.toFixed(2);
-    updateSummary();
     saveExpenses();
     renderExpenseList();
+    updateSummary();
 }
 
 // Update category summary
