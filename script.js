@@ -21,16 +21,34 @@ function saveExpenses() {
     localStorage.setItem("expenseRecords", JSON.stringify(expenseRecords));
 }
 
+// New: Helper to return category icon class
+function getCategoryIcon(category) {
+    switch(category.toLowerCase()){
+        case "food":
+            return "fa-utensils";
+        case "transportation":
+            return "fa-bus";
+        case "utilities":
+            return "fa-lightbulb";
+        case "entertainment":
+            return "fa-film";
+        default:
+            return "fa-ellipsis-h";
+    }
+}
+
 // Render the expenses in the live list
 function renderExpenseList() {
     const expenseList = document.getElementById('expenses');
     expenseList.innerHTML = "";
     expenseRecords.forEach(exp => {
+        const iconClass = getCategoryIcon(exp.category);
         const li = document.createElement('li');
         li.dataset.id = exp.id;
         li.innerHTML = `
             <div>
-                <strong>${exp.description}</strong> - <em>${exp.category}</em>
+                <strong>${exp.description}</strong> - 
+                <em><i class="fas ${iconClass}"></i> ${exp.category}</em>
                 <span>₹${exp.amount.toFixed(2)}</span>
                 <span class="datetime">${exp.formattedDate}</span>
                 ${exp.sharedWith ? `<div class="shared-info">Shared with: ${exp.sharedWith} (₹${parseFloat(exp.sharedAmount || 0).toFixed(2)})</div>` : ""}

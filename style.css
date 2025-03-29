@@ -139,6 +139,20 @@ header h1 {
     border-color: #00b4d8;
 }
 
+/* Two-column row structure in the expense form */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.form-column {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Button Groups & Buttons */
 .button-group,
 .history-controls {

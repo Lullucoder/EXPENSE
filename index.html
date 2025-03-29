@@ -26,35 +26,42 @@
       <section class="add-expense">
         <h2>Add New Expense</h2>
         <form id="expense-form">
-          <div class="form-control">
-            <label for="description">Description</label>
-            <input type="text" id="description" placeholder="Enter description" required />
+          <div class="form-row">
+            <div class="form-column">
+              <!-- Left Column -->
+              <div class="form-control">
+                <label for="description">Description</label>
+                <input type="text" id="description" placeholder="Enter description" required />
+              </div>
+              <div class="form-control">
+                <label for="expense-date">Expense Date</label>
+                <input type="date" id="expense-date" value="<?= date('Y-m-d'); ?>" required />
+              </div>
+            </div>
+            <div class="form-column">
+              <!-- Right Column -->
+              <div class="form-control">
+                <label for="amount">Amount (₹)</label>
+                <input type="number" id="amount" placeholder="Enter amount" required />
+              </div>
+              <div class="form-control">
+                <label for="category">Category</label>
+                <select id="category" required>
+                  <option value="">Select Category</option>
+                  <option value="Food">Food</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Utilities">Utilities</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-control custom-category" style="display:none;">
+                <label for="custom-category">Custom Category</label>
+                <input type="text" id="custom-category" placeholder="Enter custom category" />
+              </div>
+            </div>
           </div>
-          <div class="form-control">
-            <label for="amount">Amount (₹)</label>
-            <input type="number" id="amount" placeholder="Enter amount" required />
-          </div>
-          <div class="form-control">
-            <label for="category">Category</label>
-            <select id="category" required>
-              <option value="">Select Category</option>
-              <option value="Food">Food</option>
-              <option value="Transportation">Transportation</option>
-              <option value="Utilities">Utilities</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="form-control custom-category" style="display:none;">
-            <label for="custom-category">Custom Category</label>
-            <input type="text" id="custom-category" placeholder="Enter custom category" />
-          </div>
-          <!-- New: Expense Date -->
-          <div class="form-control">
-            <label for="expense-date">Expense Date</label>
-            <input type="date" id="expense-date" value="<?= date('Y-m-d'); ?>" required />
-          </div>
-          <!-- New: Sharing Fields -->
+          <!-- Sharing Fields (full-width) -->
           <div class="form-control">
             <label for="shared-with">Shared With (Name)</label>
             <input type="text" id="shared-with" placeholder="Optional: Enter name" />
@@ -72,22 +79,22 @@
     </div>
     
     <div class="data-pane">
-      <!-- Live Expense List -->
-      <section class="expense-list">
-        <h2>Expenses</h2>
-        <ul id="expenses"></ul>
-        <div class="total">
-          <h3>Total: ₹<span id="total-amount">0.00</span></h3>
-        </div>
-      </section>
-      
-      <!-- Summary Section -->
+      <!-- Moved: Summary Section at top -->
       <section class="expense-summary">
         <h2>Summary by Category</h2>
         <ul id="summary"></ul>
         <div class="summary-actions">
           <button id="share-summary" class="btn success"><i class="fab fa-whatsapp"></i> Share Whole List</button>
           <button id="download-csv" class="btn secondary"><i class="fas fa-download"></i> Download CSV</button>
+        </div>
+      </section>
+      
+      <!-- Live Expense List -->
+      <section class="expense-list">
+        <h2>Expenses</h2>
+        <ul id="expenses"></ul>
+        <div class="total">
+          <h3>Total: ₹<span id="total-amount">0.00</span></h3>
         </div>
       </section>
       
